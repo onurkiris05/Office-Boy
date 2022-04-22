@@ -8,14 +8,22 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float turnSpeed = 2f;
+    [SerializeField] Texture2D aimCursor;
 
     public Vector2 MoveInput { get { return _moveInput; } }
 
     Vector2 _moveInput;
     Vector2 _mousePos;
 
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.SetCursor(aimCursor, Vector2.zero, CursorMode.Auto);
+    }
+
     void Update()
     {
+        Debug.Log(_moveInput);
         HandleMovement();
         HandleRotation();
     }

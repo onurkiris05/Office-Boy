@@ -31,6 +31,5 @@ public class EnemySFX : MonoBehaviour
     public void PlayZombieDieSFX()
     {
         _audioSource.PlayOneShot(zombieDieSFX);
-        Debug.Log("Die sound played");
     }
 }

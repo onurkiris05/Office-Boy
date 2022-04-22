@@ -6,6 +6,12 @@ public class PlayerSFX : MonoBehaviour
 {
     [SerializeField] AudioClip shotgunSFX;
     [SerializeField] AudioClip hurtSFX;
+    [SerializeField] AudioClip flashlightSFX;
+
+    void Start()
+    {
+        AudioSource.PlayClipAtPoint(flashlightSFX, Camera.main.transform.position);
+    }
 
     public void PlayShotgunSFX()
     {

@@ -13,6 +13,7 @@ public class PlayerShooter : MonoBehaviour
     PlayerVFX _playerVFX;
 
     bool _isFiring;
+    bool _isRecoilTriggered;
 
     void Awake()
     {
@@ -24,6 +25,11 @@ public class PlayerShooter : MonoBehaviour
     void Update()
     {
         HandleShoot();
+    }
+
+    void FixedUpdate()
+    {
+        ApplyRecoilForce();
     }
 
     void OnFire(InputValue button)
@@ -38,8 +44,7 @@ public class PlayerShooter : MonoBehaviour
             _playerVFX.PlayShootVFX();
             _playerVFX.PlayShootLightEffect();
             _playerSFX.PlayShotgunSFX();
-            ApplyRecoilForce();
-            _isFiring = false;
+            _isRecoilTriggered = true;
         }
         else
         {
@@ -49,7 +54,11 @@ public class PlayerShooter : MonoBehaviour
 
     void ApplyRecoilForce()
     {
-        _rigidbody.velocity = Vector3.zero;
-        _rigidbody.AddRelativeForce((Vector3.back * recoilForceMagnitude), ForceMode.VelocityChange);
+        if (_isRecoilTriggered)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.AddRelativeForce((Vector3.back * recoilForceMagnitude));
+            _isRecoilTriggered = false;
+        }
     }
 }
