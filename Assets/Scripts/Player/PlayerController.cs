@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_moveInput);
         HandleMovement();
         HandleRotation();
     }
